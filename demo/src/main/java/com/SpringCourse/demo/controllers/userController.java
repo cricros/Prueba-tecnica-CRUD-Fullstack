@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,50 @@ public class userController {
         user.setEmail("pollitoenfuga@gmail.com");
         user.setTelephone(667687565);
         return user;
+    }
+    // get all users
+    @RequestMapping(value = "getUsers")
+    public List<User> getUsers(){
+
+        // creating a userList
+        List<User> userList = new ArrayList<>();
+
+        User userOne = new User();
+        userOne.setId(1L);
+        userOne.setName("Pollito");
+        userOne.setLastName("En fuga");
+        userOne.setEmail("pollitoenfuga@gmail.com");
+        userOne.setTelephone(667687565);
+
+        User userTwo = new User();
+        userTwo.setId(2L);
+        userTwo.setName("Pollito");
+        userTwo.setLastName("En fuga");
+        userTwo.setEmail("pollitoenfuga@gmail.com");
+        userTwo.setTelephone(667687565);
+
+        User userThree = new User();
+        userThree.setId(3L);
+        userThree.setName("Pollito");
+        userThree.setLastName("En fuga");
+        userThree.setEmail("pollitoenfuga@gmail.com");
+        userThree.setTelephone(667687565);
+
+        User userFour = new User();
+        userFour.setId(4L);
+        userFour.setName("Pollito");
+        userFour.setLastName("En fuga");
+        userFour.setEmail("pollitoenfuga@gmail.com");
+        userFour.setTelephone(667687565);
+
+        // adding user to list
+        userList.add(userOne);
+        userList.add(userTwo);
+        userList.add(userThree);
+        userList.add(userFour);
+
+        // returning userList
+        return userList;
     }
 
     @RequestMapping(value = "editUser")
