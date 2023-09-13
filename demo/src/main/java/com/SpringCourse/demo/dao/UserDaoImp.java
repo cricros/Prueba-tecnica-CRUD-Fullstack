@@ -16,11 +16,16 @@ public class UserDaoImp implements UserDao{
     // para la conexion a la base de datos
     EntityManager entityManager;
     @Override
+    @Transactional
     public List<User> getUsers() {
+        // sobreescribiendo el metodo abstracto para realice algo
         String query = "FROM User";
         return entityManager.createQuery(query).getResultList();
+    }
 
-
-
+    @Override
+    public void deleteUser(Long id) {
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 }
