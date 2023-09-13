@@ -18,10 +18,11 @@ async function loadUsers(){
 
   for (let userContent of userContents) {
   let btnDelete = '<a href="#" onclick ="deleteUser(' + userContent.id + ')"class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+  let telephoneNumber = userContent.telephone == null ? '-' : userContent.telephone
 
   // declaring a new variable to concat HTML with the values from userResponses
       let userDataRow = '<tr><td>' + userContent.id + '</td><td>' + userContent.name + ' ' + userContent.lastName +
-      '</td><td>' + userContent.email + '</td><td>' + userContent.telephone + '</td><td><div style="text-align: center;">'
+      '</td><td>' + userContent.email + '</td><td>' + telephoneNumber + '</td><td><div style="text-align: center;">'
       + btnDelete + '</div></td></tr>'
       userDataRowHTML += userDataRow
       }

@@ -3,10 +3,7 @@ package com.SpringCourse.demo.controllers;
 import com.SpringCourse.demo.dao.UserDao;
 import com.SpringCourse.demo.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +36,14 @@ public class userController {
         return user;
     }
     // get all users
-    @RequestMapping(value = "api/getUsers")
+    @RequestMapping(value = "api/getUsers", method = RequestMethod.GET)
     public List<User> getUsers(){
         return userDao.getUsers();
+    }
+
+    @RequestMapping(value = "api/newUser", method = RequestMethod.POST)
+    public void newUser(@RequestBody User user){
+        userDao.createUser(user);
     }
 
     @RequestMapping(value = "editUser")
