@@ -1,7 +1,12 @@
 package com.SpringCourse.demo.models;
 
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 // declaring a model for a new user using name, lastName, email, telephone number and password as fields
+@Entity
+@Table(name="users")
 public class User {
 
     private Long id;
