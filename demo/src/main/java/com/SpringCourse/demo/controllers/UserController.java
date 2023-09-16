@@ -44,6 +44,7 @@ public class UserController {
 
     @RequestMapping(value = "api/newUser", method = RequestMethod.POST)
     public void newUser(@RequestBody User user){
+        // implementing hash to password and saving it in bd
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         String hashPwd = argon2.hash(1,1024,1, user.getPassword());
         user.setPassword(hashPwd);

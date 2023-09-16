@@ -1,6 +1,8 @@
 package com.SpringCourse.demo.dao;
 
 import com.SpringCourse.demo.models.User;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,11 +39,18 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public boolean checkCredentials(User user) {
-        String query = "FROM User WHERE email = :email AND password = :password";
+        String query = "FROM User WHERE email = :email";
         List<User> listCheckCredentials = entityManager.createQuery(query)
                 .setParameter("email", user.getEmail())
-                .setParameter("password", user.getPassword())
                 .getResultList();
-        return !listCheckCredentials.isEmpty();
+
+        if (listCheckCredentials.isEmpty()){
+            return false;
+        }
+        String pwdHashed = listCheckCredentials.get(0).getPassword();
+        // unhashing pwd
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        // comparing pwd from bd vs getPassword
+        return argon2.verify(pwdHashed, user.getPassword());
     }
 }
