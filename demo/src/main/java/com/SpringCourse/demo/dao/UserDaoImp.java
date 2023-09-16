@@ -1,6 +1,7 @@
 package com.SpringCourse.demo.dao;
 
 import com.SpringCourse.demo.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +12,6 @@ import java.util.List;
 @Repository
 @Transactional
 public class UserDaoImp implements UserDao{
-
     @PersistenceContext
     // para la conexion a la base de datos
     EntityManager entityManager;
@@ -33,5 +33,15 @@ public class UserDaoImp implements UserDao{
     public void createUser(User user) {
         // merge es utilizado para mandar informacion a la bd
         entityManager.merge(user);
+    }
+
+    @Override
+    public boolean checkCredentials(User user) {
+        String query = "FROM User WHERE email = :email AND password = :password";
+        List<User> listCheckCredentials = entityManager.createQuery(query)
+                .setParameter("email", user.getEmail())
+                .setParameter("password", user.getPassword())
+                .getResultList();
+        return !listCheckCredentials.isEmpty();
     }
 }

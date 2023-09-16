@@ -14,11 +14,7 @@ public class AuthLoginController {
     private UserDao userDao;
     @RequestMapping(value = "api/loginUser", method = RequestMethod.POST)
     public String login(@RequestBody User user){
-<<<<<<< HEAD
         if (userDao.checkCredentials(user)){
-=======
-        if (userDao.checkEmail(user)){
->>>>>>> github/master
             return "Ok";
         }
         return "Fail";
