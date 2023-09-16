@@ -9,12 +9,9 @@ import java.util.List;
 // una es aquella que define métodos abstractos únicamente, no se declara alguna funcionalidad, solo el qué debe hacer dicho método
 
 public interface UserDao {
-
     List<User> getUsers();
 
     void deleteUser(Long id);
 
     void createUser(User user);
-
-    boolean checkCredentials(User user);
 }
