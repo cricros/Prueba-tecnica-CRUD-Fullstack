@@ -7,11 +7,10 @@ import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class userController {
+public class UserController {
 
     @Autowired // instacia objetos pero comparten memoria
     private UserDao userDao;

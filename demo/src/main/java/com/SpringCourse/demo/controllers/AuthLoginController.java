@@ -14,7 +14,7 @@ public class AuthLoginController {
     private UserDao userDao;
     @RequestMapping(value = "api/loginUser", method = RequestMethod.POST)
     public String login(@RequestBody User user){
-        if (userDao.checkEmail(user)){
+        if (userDao.checkCredentials(user)){
             return "Ok";
         }
         return "Fail";
