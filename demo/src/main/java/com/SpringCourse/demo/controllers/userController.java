@@ -2,6 +2,8 @@ package com.SpringCourse.demo.controllers;
 
 import com.SpringCourse.demo.dao.UserDao;
 import com.SpringCourse.demo.models.User;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +45,9 @@ public class userController {
 
     @RequestMapping(value = "api/newUser", method = RequestMethod.POST)
     public void newUser(@RequestBody User user){
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hashPwd = argon2.hash(1,1024,1, user.getPassword());
+        user.setPassword(hashPwd);
         userDao.createUser(user);
     }
 
