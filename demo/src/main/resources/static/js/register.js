@@ -14,16 +14,19 @@ data.password = document.getElementById("txtInputPassword").value;
 if (data.password != document.getElementById("txtRepeatPassword").value){
     alert("Las contraseñas no son iguales");
     return location.reload();
+} else {
+     const userResponses = await fetch('api/newUser', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (userResponses.status == '200'){
+        alert("Usuario Registrado");
+        location.reload();
+      }
 }
 
-
-  const userResponses = await fetch('api/newUser', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-  const userContents = await userResponses.json();
 }
