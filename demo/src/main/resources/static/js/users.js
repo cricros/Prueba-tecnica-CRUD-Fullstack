@@ -10,7 +10,8 @@ async function loadUsers(){
     method: 'GET',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
     },
   });
   const userContents = await userResponses.json();
@@ -39,7 +40,8 @@ async function deleteUser(id){
     method: 'Delete',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
     },
   });
   alert("Usuario Elimnado");

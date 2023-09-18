@@ -25,7 +25,7 @@ if (data.password != document.getElementById("txtRepeatPassword").value){
       });
       if (userResponses.status == '200'){
         alert("Usuario Registrado");
-        location.reload();
+        window.location.href = 'login.html'
       }
 }
 

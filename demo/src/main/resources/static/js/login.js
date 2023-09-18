@@ -18,7 +18,10 @@ data.password = document.getElementById("txtInputPassword").value;
         body: JSON.stringify(data)
       });
     const responseLogin = await userResponses.text();
-    if (responseLogin == 'Ok') {
+    if (responseLogin != 'Fail') {
+        // saving token in the server memory
+        localStorage.token = responseLogin;
+        localStorage.email = data.email;
         window.location.href = 'users.html'
     } else {
         alert("Intente nuevamente. Credenciales incorrectas")

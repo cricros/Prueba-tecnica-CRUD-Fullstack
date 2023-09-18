@@ -2,11 +2,13 @@ package com.SpringCourse.demo.controllers;
 
 import com.SpringCourse.demo.dao.UserDao;
 import com.SpringCourse.demo.models.User;
+import com.SpringCourse.demo.utils.JWTUtil;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,6 +16,9 @@ public class UserController {
 
     @Autowired // instacia objetos pero comparten memoria
     private UserDao userDao;
+
+    @Autowired
+    private JWTUtil jwtUtil;
     @RequestMapping(value = "prueba")
     // para agregar un nuevo endpoint se necesita @requestMapping y el valor del endpoint
     public String test(){
@@ -38,7 +43,11 @@ public class UserController {
     }
     // get all users
     @RequestMapping(value = "api/getUsers", method = RequestMethod.GET)
-    public List<User> getUsers(){
+    public List<User> getUsers(@RequestHeader(value = "Authorization") String token){
+        String userID = jwtUtil.getKey(token);
+        if (token == null){
+            return new ArrayList<>();
+        }
         return userDao.getUsers();
     }
 
