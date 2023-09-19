@@ -19,6 +19,11 @@ public class UserController {
 
     @Autowired
     private JWTUtil jwtUtil;
+
+    private boolean validationToken(String token){
+        String userID = jwtUtil.getKey(token);
+        return userID != null;
+    }
     @RequestMapping(value = "prueba")
     // para agregar un nuevo endpoint se necesita @requestMapping y el valor del endpoint
     public String test(){
@@ -44,10 +49,7 @@ public class UserController {
     // get all users
     @RequestMapping(value = "api/getUsers", method = RequestMethod.GET)
     public List<User> getUsers(@RequestHeader(value = "Authorization") String token){
-        String userID = jwtUtil.getKey(token);
-        if (token == null){
-            return new ArrayList<>();
-        }
+        if (!validationToken(token)){ return null;}
         return userDao.getUsers();
     }
 
@@ -60,29 +62,11 @@ public class UserController {
         userDao.createUser(user);
     }
 
-    @RequestMapping(value = "editUser")
-    public User editUser(){
-        User user = new User();
-        user.setName("Pollito");
-        user.setLastName("En fuga");
-        user.setEmail("pollitoenfuga@gmail.com");
-        user.setTelephone(667687565);
-        return user;
-    }
-
     @RequestMapping(value = "api/deleteUser/{id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable Long id){
+    public void deleteUser(@RequestHeader(value = "Authorization") String token,
+                           @PathVariable Long id){
+        if (!validationToken(token)){ return;}
         userDao.deleteUser(id);
 
-    }
-
-    @RequestMapping(value = "searchUser")
-    public User searchUser(){
-        User user = new User();
-        user.setName("Pollito");
-        user.setLastName("En fuga");
-        user.setEmail("pollitoenfuga@gmail.com");
-        user.setTelephone(667687565);
-        return user;
     }
 }

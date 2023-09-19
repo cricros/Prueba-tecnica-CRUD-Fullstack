@@ -2,7 +2,12 @@
 $(document).ready(function() {
   loadUsers();
   $('#usersTable').DataTable();
+  updateEmailName();
 });
+
+function updateEmailName(){
+    document.getElementById('txt-email-user'),outerHTML = localStorage.email;
+}
 
 // async function to load all users using AJAX to consume an REST endpoint with fetch
 async function loadUsers(){
