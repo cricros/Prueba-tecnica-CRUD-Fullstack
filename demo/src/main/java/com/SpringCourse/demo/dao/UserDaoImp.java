@@ -20,7 +20,6 @@ public class UserDaoImp implements UserDao{
     @Override
     @Transactional
     public List<User> getUsers() {
-        // sobreescribiendo el metodo abstracto para realice algo
         String query = "FROM User";
         return entityManager.createQuery(query).getResultList();
     }
@@ -39,9 +38,9 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public User getCredentials(User user) {
-        String query = "FROM User WHERE email = :email";
+        String query = "FROM User WHERE username  = :username";
         List<User> listCheckCredentials = entityManager.createQuery(query)
-                .setParameter("email", user.getEmail())
+                .setParameter("username", user.getUsername())
                 .getResultList();
 
         if (listCheckCredentials.isEmpty()){
@@ -56,4 +55,13 @@ public class UserDaoImp implements UserDao{
         }
         return null;
     }
+
+    @Override
+    public List<User> getUser(Long id) {
+        String query = "FROM User Where id_user = :id_user";
+        return entityManager.createQuery(query)
+                .setParameter("id_user", id)
+                .getResultList();
+    }
+    // agregar el nuevo merge para actualizar la bd
 }
