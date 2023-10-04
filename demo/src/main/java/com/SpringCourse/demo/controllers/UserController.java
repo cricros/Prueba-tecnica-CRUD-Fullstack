@@ -8,7 +8,6 @@ import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,28 +23,7 @@ public class UserController {
         String userID = jwtUtil.getKey(token);
         return userID != null;
     }
-    @RequestMapping(value = "prueba")
-    // para agregar un nuevo endpoint se necesita @requestMapping y el valor del endpoint
-    public String test(){
-        return "prueba";
-    }
 
-    @RequestMapping(value = "json")
-    public List<String> json(){
-        return List.of("Manzana", "Perrito", "Perro");
-    }
-
-    // declaring an endpoint with params
-    @RequestMapping(value = "getUser/{id}")
-    public User getUser(@PathVariable Long id){
-        User user = new User();
-        user.setId(id);
-        user.setName("Pollito");
-        user.setLastName("En fuga");
-        user.setEmail("pollitoenfuga@gmail.com");
-        user.setTelephone(667687565);
-        return user;
-    }
     // get all users
     @RequestMapping(value = "api/getUsers", method = RequestMethod.GET)
     public List<User> getUsers(@RequestHeader(value = "Authorization") String token){
@@ -68,5 +46,11 @@ public class UserController {
         if (!validationToken(token)){ return;}
         userDao.deleteUser(id);
 
+    }
+    @RequestMapping(value = "api/getUser/{id}", method = RequestMethod.GET)
+    public List<User> getUser(
+            @PathVariable Long id){
+
+        return userDao.getUser(id);
     }
 }

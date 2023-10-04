@@ -16,4 +16,6 @@ public interface UserDao {
     void createUser(User user);
 
     User getCredentials(User user);
+
+    List<User> getUser(Long id);
 }
