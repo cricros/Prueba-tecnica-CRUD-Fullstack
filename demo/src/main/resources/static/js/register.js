@@ -8,7 +8,7 @@ async function newUsers(){
 let data = {};
 data.name = document.getElementById("txtFirstName").value;
 data.lastName = document.getElementById("txtLastName").value;
-data.username = document.getElementById("txtInputUsername").value;
+data.email = document.getElementById("txtInputEmail").value;
 data.password = document.getElementById("txtInputPassword").value;
 
 if (data.password != document.getElementById("txtRepeatPassword").value){

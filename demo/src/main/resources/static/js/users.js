@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 function updateEmailName(){
-    document.getElementById('txt-email-user').outerHTML = localStorage.username;
+    document.getElementById('txt-email-user'),outerHTML = localStorage.email;
 }
 
 // async function to load all users using AJAX to consume an REST endpoint with fetch
@@ -23,15 +23,14 @@ async function loadUsers(){
   let userDataRowHTML = '';
 
   for (let userContent of userContents) {
-  let btnDelete = '<a href="#" onclick ="deleteUser(' + userContent.id_user + ')"class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-  let btnUpdate = '<a href="update.html?id=" onclick ="getUser(' + userContent.id_user + ')"class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a>';
+  let btnDelete = '<a href="#" onclick ="deleteUser(' + userContent.id + ')"class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+  let telephoneNumber = userContent.telephone == null ? '-' : userContent.telephone
 
   // declaring a new variable to concat HTML with the values from userResponses
-      let userDataRow =
-      '<tr><td>' + userContent.id_user + '</td><td>' + userContent.name + ' ' + userContent.lastName +
-      '</td><td>' + userContent.username + '</td><td>' + userContent.creation_date + '</td><td><div style="text-align: center;">'
-      + btnUpdate + '    ' + btnDelete + '</div></td></tr>'
-           userDataRowHTML += userDataRow
+      let userDataRow = '<tr><td>' + userContent.id + '</td><td>' + userContent.name + ' ' + userContent.lastName +
+      '</td><td>' + userContent.email + '</td><td>' + telephoneNumber + '</td><td><div style="text-align: center;">'
+      + btnDelete + '</div></td></tr>'
+      userDataRowHTML += userDataRow
       }
       // declaring a querySelector to be able to see all values in the same table
   document.querySelector('#usersTable tbody').outerHTML = userDataRowHTML;

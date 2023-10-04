@@ -21,9 +21,7 @@ public class AuthLoginController {
         // getting the user
         User userLogin = userDao.getCredentials(user);
         if (userLogin != null){
-            return jwtUtil.create(
-                    String.valueOf(userLogin.getId_user()),
-                    String.valueOf(userLogin.getUsername()));
+            return jwtUtil.create(String.valueOf(userLogin.getId()),String.valueOf(userLogin.getEmail()));
         }
         return "Fail";
     }
