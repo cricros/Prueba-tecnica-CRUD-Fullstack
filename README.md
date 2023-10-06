@@ -147,7 +147,7 @@ Permite guardar nuevos usuarios en la contraseña. Las constraseñas se almancen
 ```
 Permite eliminar usuarios. Se requiere el ID a eliminar, además de encontrase logueado. 
 
-#### Loguin usuario
+#### Login usuario
 
 ```http
   DELETE /api/loginUser
@@ -162,6 +162,7 @@ Se agregaron las siguientes mejoras:
 
 ### Registro. Se agregaron las siguientes validaciones:
 - Ya no se permiten realizar registros con campos vacios. 
+- No se permite crear un usuario con espacios en blanco. 
 - No se permite realizar un registro de un nuevo usuario si el registro ya existe. 
 
 ### Login. Se agregaron las siguientes validaciones:
@@ -170,6 +171,25 @@ Se agregaron las siguientes mejoras:
 
 ### Update
 - Permite actualizar el usuario. 
-- Se valida que el nuevo username esté disponible. 
-- Se agrego la validación para el campo password. 
+- Se agrego la validación evitar que se puedan mandar campos vacios. 
 - La nueva contraseña se hashea. 
+
+Ademas, se agrearon dos nuevos endpoints para poder realizar la actualizacion de la informacion del usuario
+
+```http
+  GET api/getUser/{id}
+```
+
+Nos permite obtener la información del usuario a validar, teniendo como condición traer unicamente la información del id proporcionado. 
+
+
+```http
+  POST api/updateUser/{id}
+```
+Nos permite realizar la actualización de la información y posteriormente guardarla en la BD. 
+
+El funcionamiento del update es el siguiente: 
+
+- Se obtiene primeramente el id del usuario, ya que con este valor haremos la consulta a la bd. 
+- Se validan que los campos no estén vacios al momento de realizar la actualizacion. 
+- Si 
