@@ -192,4 +192,4 @@ El funcionamiento del update es el siguiente:
 
 - Se obtiene primeramente el id del usuario, ya que con este valor haremos la consulta a la bd. 
 - Se validan que los campos no estén vacios al momento de realizar la actualizacion. 
-- Si 
+- Si los campos estan con la informacion correcta se alerta al usuario de la actualizacion y se le retorna a la lista de usuarios registrados
