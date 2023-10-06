@@ -73,13 +73,13 @@ public class UserController {
         if (!validationToken(token)) return null;
         // validando para que no sobreescriba usuarios que ya existen
         Boolean isUsernameNotExist = userDao.isUsernameNotExist(user);
-        if (!isUsernameNotExist && (user.getName().isEmpty() && user.getName().isBlank())) {
+        if (!isUsernameNotExist && (user.getName().isEmpty() || user.getName().isBlank())) {
             return "Name";
         }
-        if (!isUsernameNotExist && (user.getLastName().isEmpty() && user.getLastName().isBlank())) {
+        if (!isUsernameNotExist && (user.getLastName().isEmpty() || user.getLastName().isBlank())) {
             return "Lastname";
         }
-        if (!isUsernameNotExist && (user.getPassword().isEmpty() && user.getPassword().isBlank())) {
+        if (!isUsernameNotExist && (user.getPassword().isEmpty() || user.getPassword().isBlank())) {
             return "Password";
         }
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);

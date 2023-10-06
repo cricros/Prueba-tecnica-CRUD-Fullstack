@@ -54,8 +54,8 @@ async function deleteUser(id){
   location.reload();
 }
 
-function saveIDStorage(id){
-if (!confirm('Desea actualizar el usuario?')){
+async function saveIDStorage(id){
+  if (!confirm('Desea actualizar el usuario?')){
     return;
   }
   let idUser = id;

@@ -55,9 +55,9 @@ async function updateData(){
 async function updateUser(data){
   let idUser = getLocalStorage();
   console.log(idUser);
-   if (!confirm('Desea actualizar el usuario?')){
-        return;
-    }
+  if (!confirm('Se actualiza el usuario?')){
+    return;
+  }
      const userResponses = await fetch('api/updateUser/' + idUser, {
         method: 'POST',
         headers: {
