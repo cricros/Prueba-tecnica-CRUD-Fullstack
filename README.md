@@ -163,7 +163,7 @@ Se agregaron las siguientes mejoras:
 ### Registro. Se agregaron las siguientes validaciones:
 - Ya no se permiten realizar registros con campos vacios. 
 - No se permite crear un usuario con espacios en blanco. 
-- No se permite realizar un registro de un nuevo usuario si el registro ya existe. 
+- No se permite realizar un registro de un nuevo usuario si el registro ya existe.
 
 ### Login. Se agregaron las siguientes validaciones:
 - No se puede realizar el login si el usuario no existe, o no está registrado. 
@@ -176,7 +176,8 @@ Se agregaron las siguientes mejoras:
 ### Update
 - Permite actualizar el usuario. 
 - Se agrego la validación evitar que se puedan mandar campos vacios. 
-- La nueva contraseña se hashea. 
+- La nueva contraseña se hashea.
+- Se elimina el id de la memoria del navegador una vez que se realizo el update.
 
 Ademas, se agrearon dos nuevos endpoints para poder realizar la actualizacion de la informacion del usuario
 
