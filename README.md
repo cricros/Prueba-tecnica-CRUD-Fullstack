@@ -156,5 +156,20 @@ Permite iniciar sesión de usuarios registrados. Se requiere el conocer la contr
 
 
 
+## Mejoras
 
+Se agregaron las siguientes mejoras:  
 
+### Registro. Se agregaron las siguientes validaciones:
+- Ya no se permiten realizar registros con campos vacios. 
+- No se permite realizar un registro de un nuevo usuario si el registro ya existe. 
+
+### Login. Se agregaron las siguientes validaciones:
+- No se puede realizar el login si el usuario no existe, o no está registrado. 
+- Ya no se permiten campos en blanco.
+
+### Update
+- Permite actualizar el usuario. 
+- Se valida que el nuevo username esté disponible. 
+- Se agrego la validación para el campo password. 
+- La nueva contraseña se hashea. 
