@@ -71,8 +71,17 @@ async function updateUser(data){
       if (responseUpdate == '200'){
         alert("Usuario Actualizado");
         return window.location.href = 'users.html'
-      } if (responseUpdate == '500') {
-        alert("Error al actualizar. Campo vacio");
+      } if (responseUpdate == 'Name') {
+        alert("Error al actualizar. Campo Nombre vacio");
         return location.reload();
+      }
+      if (responseUpdate == 'Lastname') {
+            alert("Error al actualizar. Campo Apellido vacio");
+            return location.reload();
+      }
+      if (responseUpdate == 'Password') {
+            alert("Error al actualizar. Campo contraseña vacio");
+            return location.reload();
+
       }
 }

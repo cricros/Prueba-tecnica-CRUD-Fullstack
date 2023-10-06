@@ -41,7 +41,7 @@ public class UserController {
         // implementing hash to password and saving it in bd
         // validar que el usuario no exista anteriormente
         Boolean isUsernameNotExist = userDao.isUsernameNotExist(user);
-        if (!isUsernameNotExist) {
+        if (isUsernameNotExist) {
             Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
             String hashPwd = argon2.hash(1, 1024, 1, user.getPassword());
             user.setPassword(hashPwd);
@@ -73,13 +73,20 @@ public class UserController {
         if (!validationToken(token)) return null;
         // validando para que no sobreescriba usuarios que ya existen
         Boolean isUsernameNotExist = userDao.isUsernameNotExist(user);
-        if (!isUsernameNotExist) {
-            Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-            String hashPwd = argon2.hash(1, 1024, 1, user.getPassword());
-            user.setPassword(hashPwd);
-            userDao.updateUser(user, id);
-            return "200";
+        if (!isUsernameNotExist && (user.getName().isEmpty() && user.getName().isBlank())) {
+            return "Name";
         }
-        return "500";
+        if (!isUsernameNotExist && (user.getLastName().isEmpty() && user.getLastName().isBlank())) {
+            return "Lastname";
+        }
+        if (!isUsernameNotExist && (user.getPassword().isEmpty() && user.getPassword().isBlank())) {
+            return "Password";
+        }
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hashPwd = argon2.hash(1, 1024, 1, user.getPassword());
+        user.setPassword(hashPwd);
+        userDao.updateUser(user, id);
+        return "200";
+
     }
 }
