@@ -78,14 +78,12 @@ public class UserDaoImp implements UserDao{
     public Integer updateUser(User user, Long id) {
         String query = "UPDATE User SET name = :name" + "," +
                 "last_name = :last_name" + "," +
-                "username = :username" + "," +
                 "password = :password" + "," +
                 "creation_date = :creation_date" + " " +
                 "WHERE id_user = :id_user";
         return entityManager.createQuery(query)
                 .setParameter("name",user.getName())
                 .setParameter("last_name", user.getLastName())
-                .setParameter("username", user.getUsername())
                 .setParameter("password", user.getPassword())
                 .setParameter("creation_date", user.getCreation_date())
                 .setParameter("id_user", id)

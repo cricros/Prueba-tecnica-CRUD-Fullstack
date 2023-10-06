@@ -34,7 +34,7 @@ async function loadUser(){
     for (let userContent of userContents) {
     let userDataRow =
     '<tr id = "dataRow"><td contenteditable="true">' + userContent.name + '</td><td contenteditable="true">' + userContent.lastName +
-    '</td><td contenteditable="true">' + userContent.username + '</td><td contenteditable="true">' + '</td></tr>'
+    '</td><td>' + userContent.username + '</td><td contenteditable="true">' + '</td></tr>'
         document.querySelector('#userTable tbody').outerHTML = userDataRow;
         }
 }
@@ -48,7 +48,7 @@ async function updateData(){
         data.lastName = rowElement[1].innerHTML;
         data.username = rowElement[2].innerHTML;
         data.password = rowElement[3].innerHTML
-
+        console.log(data.password);
     const UpdateUser = await updateUser(data);
 }
 
@@ -71,7 +71,8 @@ async function updateUser(data){
       if (responseUpdate == '200'){
         alert("Usuario Actualizado");
         return window.location.href = 'users.html'
-      } if (responseUpdate == '409') {
-        return alert("Usuario Ocupado. Intente uno diferente.");
+      } if (responseUpdate == '500') {
+        alert("Error al actualizar. Campo vacio");
+        return location.reload();
       }
 }
