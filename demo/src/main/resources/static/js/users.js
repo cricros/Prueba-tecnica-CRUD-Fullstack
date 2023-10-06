@@ -24,7 +24,7 @@ async function loadUsers(){
 
   for (let userContent of userContents) {
   let btnDelete = '<a href="#" onclick ="deleteUser(' + userContent.id_user + ')"class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-  let btnUpdate = '<a href="update.html?id=" onclick ="getUser(' + userContent.id_user + ')"class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a>';
+  let btnUpdate = '<a href="update.html" onclick ="saveIDStorage(' + userContent.id_user + ')"class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a>';
 
   // declaring a new variable to concat HTML with the values from userResponses
       let userDataRow =
@@ -54,3 +54,11 @@ async function deleteUser(id){
   location.reload();
 }
 
+function saveIDStorage(id){
+if (!confirm('Desea actualizar el usuario?')){
+    return;
+  }
+  let idUser = id;
+  console.log(id);
+  localStorage.setItem("id", idUser);
+}

@@ -15,7 +15,11 @@ public interface UserDao {
 
     void createUser(User user);
 
+    Boolean isUsernameNotExist(User user);
+
     User getCredentials(User user);
 
     List<User> getUser(Long id);
+
+    Integer updateUser(User user, Long id);
 }

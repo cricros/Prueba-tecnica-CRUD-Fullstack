@@ -18,13 +18,22 @@ public class AuthLoginController {
     private JWTUtil jwtUtil;
     @RequestMapping(value = "api/loginUser", method = RequestMethod.POST)
     public String login(@RequestBody User user){
+        // validando que no exista el usuario
+        Boolean isUsernameNotExist = userDao.isUsernameNotExist(user);
         // getting the user
         User userLogin = userDao.getCredentials(user);
-        if (userLogin != null){
+        if (isUsernameNotExist){
+            // usuario no encontrado
+            return "400";
+        }
+        if (userLogin != null) {
             return jwtUtil.create(
                     String.valueOf(userLogin.getId_user()),
                     String.valueOf(userLogin.getUsername()));
+        } else {
+            // contrasenas no coinden
+            return "401";
         }
-        return "Fail";
     }
 }
+

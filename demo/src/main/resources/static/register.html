@@ -40,25 +40,25 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" id="txtFirstName"
-                                           placeholder="First Name" required />
+                                           placeholder="First Name" minlength="1" maxlength="255" required/>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="txtLastName"
-                                           placeholder="Last Name" required/>
+                                           placeholder="Last Name" minlength="1" maxlength="255" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="txtInputUsername"
-                                       placeholder="username" required/>
+                                       placeholder="Username" minlength="1" maxlength="255" required/>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user"
-                                           id="txtInputPassword" placeholder="Password" required/>
+                                           id="txtInputPassword" placeholder="Password" minlength="8" maxlength="16" required/>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"
-                                           id="txtRepeatPassword" placeholder="Repeat Password" required/>
+                                           id="txtRepeatPassword" placeholder="Repeat Password" minlength="8" maxlength="16" required/>
                                 </div>
                             </div>
                             <a onclick="newUsers()" href="#" class="btn btn-primary btn-user btn-block">
