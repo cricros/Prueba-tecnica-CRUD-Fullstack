@@ -169,6 +169,10 @@ Se agregaron las siguientes mejoras:
 - No se puede realizar el login si el usuario no existe, o no está registrado. 
 - Ya no se permiten campos en blanco.
 
+### Logout. Se agregaron las siguientes validaciones:
+- Se agrego la funcionalidad de eliminar el token una vez cerrada la sesion. 
+
+
 ### Update
 - Permite actualizar el usuario. 
 - Se agrego la validación evitar que se puedan mandar campos vacios. 
