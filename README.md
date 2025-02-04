@@ -1,7 +1,7 @@
 
-# Prueba Tecnica (CRUD con Login)
+# CRUD con springboot y java 8
 
-Se solicitó desarrollar un CRUD con Login, con motivo del proceso para la vacante de full-stack. 
+Se solicitó desarrollar un CRUD con Login, con motivo del practica para el desarrollo fullstack. 
 
 El CRUD fue solicitado con las operaciones: C(reate), R(ead), U(pdate) y D(elete). Además de contar con un frontend, el cual consume los REST endpoint para que éstos puedan desplegarse de manera satisfactoria. 
 
